@@ -1,0 +1,26 @@
+services:
+  - type: web
+    name: dataviz-backend
+    env: node
+    plan: free
+    repo: https://github.com/yourusername/your-repo-name
+    branch: main
+    rootDir: backend
+    buildCommand: npm install
+    startCommand: npm start
+    envVars:
+      - key: MONGO_URI
+        sync: false
+
+  - type: static
+    name: dataviz-frontend
+    env: static
+    plan: free
+    repo: https://github.com/Amanchahar1507/Visualization_dashboard
+    branch: main
+    rootDir: frontend
+    buildCommand: npm install && npm run build
+    publishPath: build
+    envVars:
+      - key: REACT_APP_API_URL
+        sync: false
